@@ -1,9 +1,10 @@
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.regex.Pattern;
 
 public class Person {
     private String firstName;
     private String surName;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String mobileNumber;
 
     public String getFirstName() {
@@ -11,6 +12,9 @@ public class Person {
     }
 
     public void setFirstName(String firstName) {
+        if (firstName.equals("") || !Pattern.matches("^[a-zA-Z]*$", firstName)) {
+            throw new IllegalArgumentException("First name can only contain values from a-Z");
+        }
         this.firstName = firstName;
     }
 
@@ -19,14 +23,17 @@ public class Person {
     }
 
     public void setSurName(String surName) {
+        if (surName.equals("") || !Pattern.matches("^[a-zA-Z]*$", surName)) {
+            throw new IllegalArgumentException("Last name can only contain values from a-Z");
+        }
         this.surName = surName;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -35,13 +42,16 @@ public class Person {
     }
 
     public void setMobileNumber(String mobileNumber) {
+        if (mobileNumber.equals("") || !Pattern.matches("^[0-9]*$", mobileNumber)) {
+            throw new IllegalArgumentException("Mobile Number can only contain values from 0-9");
+        }
         this.mobileNumber = mobileNumber;
     }
 
-    public Person(String firstName, String surName, Date dateOfBirth, String mobileNumber) {
-        this.firstName = firstName;
-        this.surName = surName;
-        this.dateOfBirth = dateOfBirth;
-        this.mobileNumber = mobileNumber;
+    public Person(String firstName, String surName, LocalDate dateOfBirth, String mobileNumber) {
+        setFirstName(firstName);
+        setSurName(surName);
+        setDateOfBirth(dateOfBirth);
+        setMobileNumber(mobileNumber);
     }
 }

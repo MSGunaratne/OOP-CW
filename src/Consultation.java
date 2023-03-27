@@ -1,18 +1,22 @@
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 public class Consultation {
     private Doctor consultantDoctor;
     private Patient patient;
-    private Date date;
+    private LocalDate date;
+    private LocalTime time;
     private int cost;
     private String notes;
 
-    public Consultation(Doctor consultantDoctor, Patient patient, Date date, int cost, String notes) {
-        this.consultantDoctor = consultantDoctor;
-        this.patient = patient;
-        this.date = date;
-        this.cost = cost;
-        this.notes = notes;
+    public Consultation(Doctor consultantDoctor, Patient patient, LocalDate date, LocalTime time, int cost, String notes) {
+       setConsultantDoctor(consultantDoctor);
+       setPatient(patient);
+       setDate(date);
+       setTime(time);
+       setCost(cost);
+       setNotes(notes);
     }
 
     public Doctor getConsultantDoctor() {
@@ -31,11 +35,11 @@ public class Consultation {
         this.patient = patient;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -53,5 +57,13 @@ public class Consultation {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 }
